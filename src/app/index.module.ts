@@ -4,26 +4,24 @@ import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
 import { MainController } from './main/main.controller';
-import { GithubContributor } from '../app/components/githubContributor/githubContributor.service';
-import { WebDevTecService } from '../app/components/webDevTec/webDevTec.service';
-import { acmeNavbar } from '../app/components/navbar/navbar.directive';
-import { acmeMalarkey } from '../app/components/malarkey/malarkey.directive';
-
-declare var malarkey: any;
-declare var moment: moment.MomentStatic;
+import { contactNameFilter } from './components/contactName/contactName.filter';
+import { FeedbackDirective } from './components/feedback/feedback.directive';
 
 module AngularTypescriptDemos {
   'use strict';
 
-  angular.module('angularTypescriptDemos', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'toastr'])
-    .constant('malarkey', malarkey)
+  angular.module('angularTypescriptDemos.filters', [])
+    .filter('contactName', contactNameFilter);
+
+  angular.module('angularTypescriptDemos.directives', [])
+    .directive('feedback', FeedbackDirective);
+
+  angular.module('angularTypescriptDemos', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages', 'ngAria', 'ngResource', 'ngRoute', 'toastr', 'angularTypescriptDemos.filters', 'angularTypescriptDemos.directives'])
     .constant('moment', moment)
     .config(config)
     .config(routerConfig)
     .run(runBlock)
-    .service('githubContributor', GithubContributor)
-    .service('webDevTec', WebDevTecService)
-    .controller('MainController', MainController)
-    .directive('acmeNavbar', acmeNavbar)
-    .directive('acmeMalarkey', acmeMalarkey);
+    .controller('MainController', MainController);
+
+
 }
