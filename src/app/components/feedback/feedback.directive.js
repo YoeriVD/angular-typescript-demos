@@ -27,6 +27,7 @@ function FeedbackDirective() {
 }
 exports.FeedbackDirective = FeedbackDirective;
 var FeedbackController = (function () {
+    /** @ngInject */
     function FeedbackController($log, $window) {
         this.$log = $log;
         this.$window = $window;

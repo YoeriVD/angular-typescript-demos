@@ -33,6 +33,7 @@ export class FeedbackController {
   public feedback: Feedback;
   public debug: any;
 
+  /** @ngInject */
   constructor(private $log: angular.ILogService, private $window: angular.IWindowService) {
   }
 
